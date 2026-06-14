@@ -332,15 +332,10 @@
       stroke: var(--navy);
       stroke-width: 1.5;
     }
-    /* Note stem */
-    .note-stem {
-      stroke: var(--navy);
-      stroke-width: 2;
-    }
     /* Note label inside circle */
     .note-label {
       font-family: 'Playfair Display', serif;
-      font-size: 11px;
+      font-size: 16px;
       fill: var(--cream);
       text-anchor: middle;
       dominant-baseline: central;
@@ -654,41 +649,41 @@
       <!-- Concert placeholder 1 -->
       <div class="concert-item">
         <div class="concert-date">
-          <div class="day">TBA</div>
-          <div class="month">2025</div>
+          <div class="day">10.07</div>
+          <div class="month">2026</div>
         </div>
         <div class="concert-info">
           <div class="venue">
-            <span data-lang="en" class="lang-active">Venue TBA</span>
-            <span data-lang="de">Veranstaltungsort folgt</span>
-            <span data-lang="es">Local por confirmar</span>
+            <span data-lang="en" class="lang-active">Food Truck Agatha</span>
+            <span data-lang="de">Food Truck Agatha</span>
+            <span data-lang="es">Food Truck Agatha</span>
           </div>
           <div class="location">Basel, Switzerland</div>
         </div>
         <div class="concert-ticket">
-          <span data-lang="en" class="lang-active">Soon</span>
-          <span data-lang="de">Bald</span>
-          <span data-lang="es">Pronto</span>
+          <span data-lang="en" class="lang-active">July 10th 2026 - 18:00</span>
+          <span data-lang="de">10 Juli 2026 - 18:00</span>
+          <span data-lang="es">10 Julio 2026 - 18:00</span>
         </div>
       </div>
       <!-- Concert placeholder 2 -->
       <div class="concert-item">
         <div class="concert-date">
-          <div class="day">TBA</div>
-          <div class="month">2025</div>
+          <div class="day">09.10</div>
+          <div class="month">2026</div>
         </div>
         <div class="concert-info">
           <div class="venue">
-            <span data-lang="en" class="lang-active">Venue TBA</span>
-            <span data-lang="de">Veranstaltungsort folgt</span>
-            <span data-lang="es">Local por confirmar</span>
+            <span data-lang="en" class="lang-active">Gleis 58</span>
+            <span data-lang="de">Gleis 58</span>
+            <span data-lang="es">Gleis 58</span>
           </div>
           <div class="location">Basel, Switzerland</div>
         </div>
         <div class="concert-ticket">
-          <span data-lang="en" class="lang-active">Soon</span>
-          <span data-lang="de">Bald</span>
-          <span data-lang="es">Pronto</span>
+          <span data-lang="en" class="lang-active">October 9th 2026 - 18:00</span>
+          <span data-lang="de">9 Oktober 2026 - 18:00</span>
+          <span data-lang="es">9 Octubre 2026 - 18:00</span>
         </div>
       </div>
     </div>
@@ -756,90 +751,89 @@
       </div>
 
       <svg class="pentagram-svg" id="pentagram-svg"
-           viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 960 410" xmlns="http://www.w3.org/2000/svg"
            aria-label="Band members on a musical staff">
 
         <!-- ── STAFF LINES ── -->
-        <!-- Lines numbered 1 (bottom) to 5 (top); spacing = 36px; y-top = 80 -->
-        <!-- line1 y=224, line2 y=188, line3 y=152, line4 y=116, line5 y=80 -->
-        <line class="staff-line" x1="60" y1="224" x2="860" y2="224"/>
-        <line class="staff-line" x1="60" y1="188" x2="860" y2="188"/>
-        <line class="staff-line" x1="60" y1="152" x2="860" y2="152"/>
-        <line class="staff-line" x1="60" y1="116" x2="860" y2="116"/>
-        <line class="staff-line" x1="60" y1="80"  x2="860" y2="80"/>
+        <!-- Spacing = 50px between lines. line1(bottom) y=310, line5(top) y=110 -->
+        <!-- Do sits 50px below line1 at y=360, Si on line3 at y=210 -->
+        <line class="staff-line" x1="80" y1="310" x2="880" y2="310"/>
+        <line class="staff-line" x1="80" y1="260" x2="880" y2="260"/>
+        <line class="staff-line" x1="80" y1="210" x2="880" y2="210"/>
+        <line class="staff-line" x1="80" y1="160" x2="880" y2="160"/>
+        <line class="staff-line" x1="80" y1="110" x2="880" y2="110"/>
 
-        <!-- ── TREBLE CLEF (Unicode glyph via text) ── -->
-        <text x="62" y="248"
-              font-family="serif" font-size="200" fill="var(--navy)"
-              opacity="0.12" dominant-baseline="auto"
+        <!-- ── TREBLE CLEF ──
+             Positioned so the G-curl sits on line2 (y=260).
+             The 𝄞 glyph in most serif fonts: the curl is roughly at 82% of the cap-height
+             from the baseline. With font-size=340 and baseline at y=343,
+             the curl centre lands near y = 343 - 340*0.245 ≈ 260. ✓
+        -->
+        <text x="83" y="343"
+              font-family="Georgia, 'Times New Roman', serif"
+              font-size="340"
+              fill="var(--navy)"
+              opacity="0.15"
+              dominant-baseline="auto"
               aria-hidden="true">𝄞</text>
 
-        <!-- ── NOTE POSITIONS ──
-             Staff spacing = 36px (line to line).
-             Half-space = 18px.
-             Note centre y values:
-               Do  (C4) = line1 + 36  = 260  (one space below line1, on ledger)
-               Re  (D4) = line1 + 18  = 242  (space below line1)
-               Mi  (E4) = line1       = 224  (on line1)
-               Fa  (F4) = line1 - 18  = 206  (space between line1 and line2)
-               Sol (G4) = line2       = 188  (on line2)
-               La  (A4) = line2 - 18  = 170  (space between line2 and line3)
-               Si  (B4) = line3       = 152  (on line3)
+        <!--
+          Staff spacing = 50px. Half-space = 25px. Note radius = 38px.
+          Y centres (note heads):
+            Do  (C4) = line1 + 50  = 360  (ledger line below staff)
+            Re  (D4) = line1 + 25  = 335  (space below line1)
+            Mi  (E4) = line1       = 310  (on line1)
+            Fa  (F4) = line1 - 25  = 285  (space between line1 & line2)
+            Sol (G4) = line2       = 260  (on line2)
+            La  (A4) = line2 - 25  = 235  (space between line2 & line3)
+            Si  (B4) = line3       = 210  (on line3)
 
-             X positions spread evenly across staff (after clef):
-               Do=160  Re=255  Mi=350  Fa=445  Sol=540  La=635  Si=730
+          X positions (centres), spread evenly:
+            Do=170  Re=280  Mi=390  Fa=500  Sol=610  La=720  Si=830
         -->
 
-        <!-- Do – César (ledger line below staff) -->
-        <line class="ledger-line" x1="138" y1="260" x2="182" y2="260"/>
-        <!-- stem up for notes below middle (Do, Re, Mi) -->
-        <line class="note-stem" x1="174" y1="260" x2="174" y2="206"/>
-        <ellipse class="note-head" id="note-do" cx="160" cy="260" rx="18" ry="13"
-                 data-member="César" data-note="Do"
-                 data-role-en="Vocals / Guitar" data-role-de="Gesang / Gitarre" data-role-es="Voz / Guitarra"/>
-        <text class="note-label" x="160" y="260">Cé</text>
+        <!-- Do – César (ledger line) -->
+        <line class="ledger-line" x1="132" y1="360" x2="208" y2="360"/>
+        <circle class="note-head" id="note-do" cx="170" cy="360" r="38"
+                data-member="César" data-note="Do"
+                data-role-en="Vocals" data-role-de="Gesang" data-role-es="Cante"/>
+        <text class="note-label" x="170" y="360">Cé</text>
 
-        <!-- Re – Miguel (space below line 1) -->
-        <line class="note-stem" x1="269" y1="242" x2="269" y2="188"/>
-        <ellipse class="note-head" id="note-re" cx="255" cy="242" rx="18" ry="13"
-                 data-member="Miguel" data-note="Re"
-                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
-        <text class="note-label" x="255" y="242">Mi</text>
+        <!-- Re – Miguel -->
+        <circle class="note-head" id="note-re" cx="280" cy="335" r="38"
+                data-member="Miguel" data-note="Re"
+                data-role-en="Bass" data-role-de="Bass" data-role-es="Bajo"/>
+        <text class="note-label" x="280" y="335">Mi</text>
 
-        <!-- Mi – Álvaro (on line 1) -->
-        <line class="note-stem" x1="364" y1="224" x2="364" y2="170"/>
-        <ellipse class="note-head" id="note-mi" cx="350" cy="224" rx="18" ry="13"
-                 data-member="Álvaro" data-note="Mi"
-                 data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
-        <text class="note-label" x="350" y="224">Ál</text>
+        <!-- Mi – Álvaro -->
+        <circle class="note-head" id="note-mi" cx="390" cy="310" r="38"
+                data-member="Álvaro" data-note="Mi"
+                data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
+        <text class="note-label" x="390" y="310">Ál</text>
 
-        <!-- Fa – Jorge (space between line1 and line2, stem up) -->
-        <line class="note-stem" x1="459" y1="206" x2="459" y2="152"/>
-        <ellipse class="note-head" id="note-fa" cx="445" cy="206" rx="18" ry="13"
-                 data-member="Jorge" data-note="Fa"
-                 data-role-en="Bass" data-role-de="Bass" data-role-es="Bajo"/>
-        <text class="note-label" x="445" y="206">Jo</text>
+        <!-- Fa – Jorge -->
+        <circle class="note-head" id="note-fa" cx="500" cy="285" r="38"
+                data-member="Jorge" data-note="Fa"
+                data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
+        <text class="note-label" x="500" y="285">Jo</text>
 
-        <!-- Sol – Imanol (on line 2, stem up) -->
-        <line class="note-stem" x1="554" y1="188" x2="554" y2="134"/>
-        <ellipse class="note-head" id="note-sol" cx="540" cy="188" rx="18" ry="13"
-                 data-member="Imanol" data-note="Sol"
-                 data-role-en="Vocals / Guitar" data-role-de="Gesang / Gitarre" data-role-es="Voz / Guitarra"/>
-        <text class="note-label" x="540" y="188">Im</text>
+        <!-- Sol – Imanol -->
+        <circle class="note-head" id="note-sol" cx="610" cy="260" r="38"
+                data-member="Imanol" data-note="Sol"
+                data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
+        <text class="note-label" x="610" y="260">Im</text>
 
-        <!-- La – Adrián (space between line2 and line3, stem down) -->
-        <line class="note-stem" x1="635" y1="170" x2="635" y2="224"/>
-        <ellipse class="note-head" id="note-la" cx="649" cy="170" rx="18" ry="13"
-                 data-member="Adrián" data-note="La"
-                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
-        <text class="note-label" x="649" y="170">Ad</text>
+        <!-- La – Adrián -->
+        <circle class="note-head" id="note-la" cx="720" cy="235" r="38"
+                data-member="Adrián" data-note="La"
+                data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
+        <text class="note-label" x="720" y="235">Ad</text>
 
-        <!-- Si – Alex (on line 3, stem down) -->
-        <line class="note-stem" x1="730" y1="152" x2="730" y2="206"/>
-        <ellipse class="note-head" id="note-si" cx="744" cy="152" rx="18" ry="13"
-                 data-member="Alex" data-note="Si"
-                 data-role-en="Cajon / Percussion" data-role-de="Cajón / Perkussion" data-role-es="Cajón / Percusión"/>
-        <text class="note-label" x="744" y="152">Al</text>
+        <!-- Si – Alex -->
+        <circle class="note-head" id="note-si" cx="830" cy="210" r="38"
+                data-member="Alex" data-note="Si"
+                data-role-en="Piano" data-role-de="Klavier" data-role-es="Piano"/>
+        <text class="note-label" x="830" y="210">Al</text>
 
       </svg>
     </div>
@@ -851,9 +845,9 @@
         <div class="legend-text">
           <div class="l-name">César</div>
           <div class="l-role">
-            <span data-lang="en" class="lang-active">Vocals / Guitar</span>
-            <span data-lang="de">Gesang / Gitarre</span>
-            <span data-lang="es">Voz / Guitarra</span>
+            <span data-lang="en" class="lang-active">Vocals</span>
+            <span data-lang="de">Gesang</span>
+            <span data-lang="es">Cante</span>
           </div>
         </div>
       </div>
@@ -862,9 +856,9 @@
         <div class="legend-text">
           <div class="l-name">Miguel</div>
           <div class="l-role">
-            <span data-lang="en" class="lang-active">Guitar</span>
-            <span data-lang="de">Gitarre</span>
-            <span data-lang="es">Guitarra</span>
+            <span data-lang="en" class="lang-active">Bass</span>
+            <span data-lang="de">Bass</span>
+            <span data-lang="es">Bajo</span>
           </div>
         </div>
       </div>
@@ -884,9 +878,9 @@
         <div class="legend-text">
           <div class="l-name">Jorge</div>
           <div class="l-role">
-            <span data-lang="en" class="lang-active">Bass</span>
-            <span data-lang="de">Bass</span>
-            <span data-lang="es">Bajo</span>
+            <span data-lang="en" class="lang-active">Percussion</span>
+            <span data-lang="de">Perkussion</span>
+            <span data-lang="es">Percusión</span>
           </div>
         </div>
       </div>
@@ -895,9 +889,9 @@
         <div class="legend-text">
           <div class="l-name">Imanol</div>
           <div class="l-role">
-            <span data-lang="en" class="lang-active">Vocals / Guitar</span>
-            <span data-lang="de">Gesang / Gitarre</span>
-            <span data-lang="es">Voz / Guitarra</span>
+            <span data-lang="en" class="lang-active">Guitar</span>
+            <span data-lang="de">Gitarre</span>
+            <span data-lang="es">Guitarra</span>
           </div>
         </div>
       </div>
@@ -917,9 +911,9 @@
         <div class="legend-text">
           <div class="l-name">Alex</div>
           <div class="l-role">
-            <span data-lang="en" class="lang-active">Cajon / Percussion</span>
-            <span data-lang="de">Cajón / Perkussion</span>
-            <span data-lang="es">Cajón / Percusión</span>
+            <span data-lang="en" class="lang-active">Piano</span>
+            <span data-lang="de">Klavier</span>
+            <span data-lang="es">Piano</span>
           </div>
         </div>
       </div>
@@ -1157,13 +1151,13 @@
     const wrap   = document.getElementById('pentagram-wrap');
 
     const ROLES = {
-      'César':  { en: 'Vocals / Guitar',    de: 'Gesang / Gitarre',    es: 'Voz / Guitarra'    },
-      'Miguel': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
+      'César':  { en: 'Vocals',             de: 'Gesang',              es: 'Cante'              },
+      'Miguel': { en: 'Bass',               de: 'Bass',                es: 'Bajo'               },
       'Álvaro': { en: 'Percussion',         de: 'Perkussion',          es: 'Percusión'          },
-      'Jorge':  { en: 'Bass',               de: 'Bass',                es: 'Bajo'               },
-      'Imanol': { en: 'Vocals / Guitar',    de: 'Gesang / Gitarre',    es: 'Voz / Guitarra'    },
+      'Jorge':  { en: 'Percussion',         de: 'Perkussion',          es: 'Percusión'          },
+      'Imanol': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
       'Adrián': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
-      'Alex':   { en: 'Cajon / Percussion', de: 'Cajón / Perkussion',  es: 'Cajón / Percusión' },
+      'Alex':   { en: 'Piano',              de: 'Klavier',             es: 'Piano'              },
     };
 
     document.querySelectorAll('.note-head').forEach(function(el) {
