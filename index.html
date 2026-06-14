@@ -557,6 +557,35 @@
       width: 100%; height: 100%;
       border: none;
     }
+    .video-link-card {
+      display: block;
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .video-link-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .video-link-card:hover img { transform: scale(1.04); }
+    .video-link-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background 0.2s;
+    }
+    .video-link-card:hover .video-link-overlay { background: rgba(0,0,0,0.55); }
+    .video-link-overlay svg {
+      width: 60px; height: 60px;
+      fill: white;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
 
     /* ─── FOOTER ─────────────────────────────────────────────────── */
     footer {
@@ -1051,14 +1080,12 @@
 
     <div class="videos-grid">
       <!-- Placeholder slots — replace with real embeds -->
-      <div class="video-placeholder">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        <span>
-          <span data-lang="en" class="lang-active">Video coming soon</span>
-          <span data-lang="de">Video folgt bald</span>
-          <span data-lang="es">Vídeo próximamente</span>
-        </span>
-      </div>
+      <a href="https://youtu.be/z4_GlcaE5WU?t=109" target="_blank" rel="noopener" class="video-link-card">
+        <img src="https://img.youtube.com/vi/z4_GlcaE5WU/hqdefault.jpg" alt="Los del Rin video" />
+        <div class="video-link-overlay">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </a>
       <div class="video-placeholder">
         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         <span>
