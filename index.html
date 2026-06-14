@@ -300,39 +300,126 @@
       margin-bottom: 64px;
       line-height: 1.8;
     }
-    .members-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 24px;
+
+    /* ─── PENTAGRAM ──────────────────────────────────────────────── */
+    .pentagram-wrap {
+      position: relative;
+      width: 100%;
+      overflow: visible;
+      margin-bottom: 16px;
     }
-    .member-card {
+    .pentagram-svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+    /* Staff lines */
+    .staff-line {
+      stroke: var(--navy);
+      stroke-width: 1.5;
+    }
+    /* Note head (filled oval) */
+    .note-head {
+      fill: var(--burgundy);
+      stroke: var(--dark-red);
+      stroke-width: 1;
+      cursor: default;
+      transition: filter 0.2s;
+    }
+    .note-head:hover { filter: brightness(1.25); }
+    /* Ledger line for Do */
+    .ledger-line {
+      stroke: var(--navy);
+      stroke-width: 1.5;
+    }
+    /* Note stem */
+    .note-stem {
+      stroke: var(--navy);
+      stroke-width: 2;
+    }
+    /* Note label inside circle */
+    .note-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      fill: var(--cream);
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+      font-weight: 700;
+    }
+    /* Member tooltip card */
+    .member-popup {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s;
+      background: var(--navy);
+      color: var(--cream);
+      border-radius: 4px;
+      padding: 10px 16px;
       text-align: center;
+      min-width: 110px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+      z-index: 10;
+      transform: translate(-50%, -110%);
     }
-    .member-avatar {
-      width: 96px;
-      height: 96px;
+    .member-popup.visible { opacity: 1; pointer-events: none; }
+    .member-popup .pop-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    .member-popup .pop-note {
+      font-size: 1.2rem;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+    .member-popup .pop-role {
+      font-size: 0.7rem;
+      color: rgba(245,230,216,0.65);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .pentagram-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      justify-content: center;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+    .legend-dot {
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--burgundy), var(--navy));
-      margin: 0 auto 12px;
+      background: linear-gradient(135deg, var(--burgundy), var(--dark-red));
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--cream);
-      letter-spacing: -1px;
-      box-shadow: 0 4px 16px rgba(139,26,47,0.2);
-    }
-    .member-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--navy);
-      margin-bottom: 2px;
-    }
-    .member-role {
       font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cream);
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(139,26,47,0.25);
+    }
+    .legend-text .l-name {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 0.9rem;
+    }
+    .legend-text .l-role {
+      font-size: 0.72rem;
       color: var(--burgundy);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
@@ -645,69 +732,195 @@
       </div>
     </div>
 
-    <!-- Members -->
-    <div class="members-grid">
-      <div class="member-card">
-        <div class="member-avatar">Cé</div>
-        <div class="member-name">César</div>
-        <div class="member-role">
-          <span data-lang="en" class="lang-active">Vocals / Guitar</span>
-          <span data-lang="de">Gesang / Gitarre</span>
-          <span data-lang="es">Voz / Guitarra</span>
+    <!-- Members — Pentagram -->
+    <!--
+      Treble clef, C major scale (C4–B4):
+        Do  (C4) = ledger line below staff
+        Re  (D4) = space below 1st line
+        Mi  (E4) = 1st line  (bottom)
+        Fa  (F4) = 1st space
+        Sol (G4) = 2nd line
+        La  (A4) = 2nd space
+        Si  (B4) = 3rd line
+
+      Members assigned left→right by ascending pitch:
+        Do=César  Re=Miguel  Mi=Álvaro  Fa=Jorge  Sol=Imanol  La=Adrián  Si=Alex
+    -->
+    <div class="pentagram-wrap" id="pentagram-wrap">
+
+      <!-- Tooltip popup (JS-driven) -->
+      <div class="member-popup" id="member-popup">
+        <div class="pop-note" id="pop-note"></div>
+        <div class="pop-name" id="pop-name"></div>
+        <div class="pop-role" id="pop-role"></div>
+      </div>
+
+      <svg class="pentagram-svg" id="pentagram-svg"
+           viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg"
+           aria-label="Band members on a musical staff">
+
+        <!-- ── STAFF LINES ── -->
+        <!-- Lines numbered 1 (bottom) to 5 (top); spacing = 36px; y-top = 80 -->
+        <!-- line1 y=224, line2 y=188, line3 y=152, line4 y=116, line5 y=80 -->
+        <line class="staff-line" x1="60" y1="224" x2="860" y2="224"/>
+        <line class="staff-line" x1="60" y1="188" x2="860" y2="188"/>
+        <line class="staff-line" x1="60" y1="152" x2="860" y2="152"/>
+        <line class="staff-line" x1="60" y1="116" x2="860" y2="116"/>
+        <line class="staff-line" x1="60" y1="80"  x2="860" y2="80"/>
+
+        <!-- ── TREBLE CLEF (Unicode glyph via text) ── -->
+        <text x="62" y="248"
+              font-family="serif" font-size="200" fill="var(--navy)"
+              opacity="0.12" dominant-baseline="auto"
+              aria-hidden="true">𝄞</text>
+
+        <!-- ── NOTE POSITIONS ──
+             Staff spacing = 36px (line to line).
+             Half-space = 18px.
+             Note centre y values:
+               Do  (C4) = line1 + 36  = 260  (one space below line1, on ledger)
+               Re  (D4) = line1 + 18  = 242  (space below line1)
+               Mi  (E4) = line1       = 224  (on line1)
+               Fa  (F4) = line1 - 18  = 206  (space between line1 and line2)
+               Sol (G4) = line2       = 188  (on line2)
+               La  (A4) = line2 - 18  = 170  (space between line2 and line3)
+               Si  (B4) = line3       = 152  (on line3)
+
+             X positions spread evenly across staff (after clef):
+               Do=160  Re=255  Mi=350  Fa=445  Sol=540  La=635  Si=730
+        -->
+
+        <!-- Do – César (ledger line below staff) -->
+        <line class="ledger-line" x1="138" y1="260" x2="182" y2="260"/>
+        <!-- stem up for notes below middle (Do, Re, Mi) -->
+        <line class="note-stem" x1="174" y1="260" x2="174" y2="206"/>
+        <ellipse class="note-head" id="note-do" cx="160" cy="260" rx="18" ry="13"
+                 data-member="César" data-note="Do"
+                 data-role-en="Vocals / Guitar" data-role-de="Gesang / Gitarre" data-role-es="Voz / Guitarra"/>
+        <text class="note-label" x="160" y="260">Cé</text>
+
+        <!-- Re – Miguel (space below line 1) -->
+        <line class="note-stem" x1="269" y1="242" x2="269" y2="188"/>
+        <ellipse class="note-head" id="note-re" cx="255" cy="242" rx="18" ry="13"
+                 data-member="Miguel" data-note="Re"
+                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
+        <text class="note-label" x="255" y="242">Mi</text>
+
+        <!-- Mi – Álvaro (on line 1) -->
+        <line class="note-stem" x1="364" y1="224" x2="364" y2="170"/>
+        <ellipse class="note-head" id="note-mi" cx="350" cy="224" rx="18" ry="13"
+                 data-member="Álvaro" data-note="Mi"
+                 data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
+        <text class="note-label" x="350" y="224">Ál</text>
+
+        <!-- Fa – Jorge (space between line1 and line2, stem up) -->
+        <line class="note-stem" x1="459" y1="206" x2="459" y2="152"/>
+        <ellipse class="note-head" id="note-fa" cx="445" cy="206" rx="18" ry="13"
+                 data-member="Jorge" data-note="Fa"
+                 data-role-en="Bass" data-role-de="Bass" data-role-es="Bajo"/>
+        <text class="note-label" x="445" y="206">Jo</text>
+
+        <!-- Sol – Imanol (on line 2, stem up) -->
+        <line class="note-stem" x1="554" y1="188" x2="554" y2="134"/>
+        <ellipse class="note-head" id="note-sol" cx="540" cy="188" rx="18" ry="13"
+                 data-member="Imanol" data-note="Sol"
+                 data-role-en="Vocals / Guitar" data-role-de="Gesang / Gitarre" data-role-es="Voz / Guitarra"/>
+        <text class="note-label" x="540" y="188">Im</text>
+
+        <!-- La – Adrián (space between line2 and line3, stem down) -->
+        <line class="note-stem" x1="635" y1="170" x2="635" y2="224"/>
+        <ellipse class="note-head" id="note-la" cx="649" cy="170" rx="18" ry="13"
+                 data-member="Adrián" data-note="La"
+                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
+        <text class="note-label" x="649" y="170">Ad</text>
+
+        <!-- Si – Alex (on line 3, stem down) -->
+        <line class="note-stem" x1="730" y1="152" x2="730" y2="206"/>
+        <ellipse class="note-head" id="note-si" cx="744" cy="152" rx="18" ry="13"
+                 data-member="Alex" data-note="Si"
+                 data-role-en="Cajon / Percussion" data-role-de="Cajón / Perkussion" data-role-es="Cajón / Percusión"/>
+        <text class="note-label" x="744" y="152">Al</text>
+
+      </svg>
+    </div>
+
+    <!-- Legend below staff -->
+    <div class="pentagram-legend">
+      <div class="legend-item">
+        <div class="legend-dot">Do</div>
+        <div class="legend-text">
+          <div class="l-name">César</div>
+          <div class="l-role">
+            <span data-lang="en" class="lang-active">Vocals / Guitar</span>
+            <span data-lang="de">Gesang / Gitarre</span>
+            <span data-lang="es">Voz / Guitarra</span>
+          </div>
         </div>
       </div>
-      <div class="member-card">
-        <div class="member-avatar">Mi</div>
-        <div class="member-name">Miguel</div>
-        <div class="member-role">
-          <span data-lang="en" class="lang-active">Guitar</span>
-          <span data-lang="de">Gitarre</span>
-          <span data-lang="es">Guitarra</span>
+      <div class="legend-item">
+        <div class="legend-dot">Re</div>
+        <div class="legend-text">
+          <div class="l-name">Miguel</div>
+          <div class="l-role">
+            <span data-lang="en" class="lang-active">Guitar</span>
+            <span data-lang="de">Gitarre</span>
+            <span data-lang="es">Guitarra</span>
+          </div>
         </div>
       </div>
-      <div class="member-card">
-        <div class="member-avatar">Ál</div>
-        <div class="member-name">Álvaro</div>
-        <div class="member-role">
-          <span data-lang="en" class="lang-active">Percussion</span>
-          <span data-lang="de">Perkussion</span>
-          <span data-lang="es">Percusión</span>
+      <div class="legend-item">
+        <div class="legend-dot">Mi</div>
+        <div class="legend-text">
+          <div class="l-name">Álvaro</div>
+          <div class="l-role">
+            <span data-lang="en" class="lang-active">Percussion</span>
+            <span data-lang="de">Perkussion</span>
+            <span data-lang="es">Percusión</span>
+          </div>
         </div>
       </div>
-      <div class="member-card">
-        <div class="member-avatar">Jo</div>
-        <div class="member-name">Jorge</div>
-        <div class="member-role">
-          <span data-lang="en" class="lang-active">Bass</span>
-          <span data-lang="de">Bass</span>
-          <span data-lang="es">Bajo</span>
+      <div class="legend-item">
+        <div class="legend-dot">Fa</div>
+        <div class="legend-text">
+          <div class="l-name">Jorge</div>
+          <div class="l-role">
+            <span data-lang="en" class="lang-active">Bass</span>
+            <span data-lang="de">Bass</span>
+            <span data-lang="es">Bajo</span>
+          </div>
         </div>
       </div>
-      <div class="member-card">
-        <div class="member-avatar">Im</div>
-        <div class="member-name">Imanol</div>
-        <div class="member-role">
-          <span data-lang="en" class="lang-active">Vocals / Guitar</span>
-          <span data-lang="de">Gesang / Gitarre</span>
-          <span data-lang="es">Voz / Guitarra</span>
+      <div class="legend-item">
+        <div class="legend-dot">Sol</div>
+        <div class="legend-text">
+          <div class="l-name">Imanol</div>
+          <div class="l-role">
+            <span data-lang="en" class="lang-active">Vocals / Guitar</span>
+            <span data-lang="de">Gesang / Gitarre</span>
+            <span data-lang="es">Voz / Guitarra</span>
+          </div>
         </div>
       </div>
-      <div class="member-card">
-        <div class="member-avatar">Ad</div>
-        <div class="member-name">Adrián</div>
-        <div class="member-role">
-          <span data-lang="en" class="lang-active">Guitar</span>
-          <span data-lang="de">Gitarre</span>
-          <span data-lang="es">Guitarra</span>
+      <div class="legend-item">
+        <div class="legend-dot">La</div>
+        <div class="legend-text">
+          <div class="l-name">Adrián</div>
+          <div class="l-role">
+            <span data-lang="en" class="lang-active">Guitar</span>
+            <span data-lang="de">Gitarre</span>
+            <span data-lang="es">Guitarra</span>
+          </div>
         </div>
       </div>
-      <div class="member-card">
-        <div class="member-avatar">Al</div>
-        <div class="member-name">Alex</div>
-        <div class="member-role">
-          <span data-lang="en" class="lang-active">Cajon / Percussion</span>
-          <span data-lang="de">Cajón / Perkussion</span>
-          <span data-lang="es">Cajón / Percusión</span>
+      <div class="legend-item">
+        <div class="legend-dot">Si</div>
+        <div class="legend-text">
+          <div class="l-name">Alex</div>
+          <div class="l-role">
+            <span data-lang="en" class="lang-active">Cajon / Percussion</span>
+            <span data-lang="de">Cajón / Perkussion</span>
+            <span data-lang="es">Cajón / Percusión</span>
+          </div>
         </div>
       </div>
     </div>
@@ -934,6 +1147,47 @@
   // Init
   updateNav();
   setLang('en');
+
+  // ── Pentagram note hover ──
+  (function() {
+    const popup  = document.getElementById('member-popup');
+    const popNote = document.getElementById('pop-note');
+    const popName = document.getElementById('pop-name');
+    const popRole = document.getElementById('pop-role');
+    const wrap   = document.getElementById('pentagram-wrap');
+
+    const ROLES = {
+      'César':  { en: 'Vocals / Guitar',    de: 'Gesang / Gitarre',    es: 'Voz / Guitarra'    },
+      'Miguel': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
+      'Álvaro': { en: 'Percussion',         de: 'Perkussion',          es: 'Percusión'          },
+      'Jorge':  { en: 'Bass',               de: 'Bass',                es: 'Bajo'               },
+      'Imanol': { en: 'Vocals / Guitar',    de: 'Gesang / Gitarre',    es: 'Voz / Guitarra'    },
+      'Adrián': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
+      'Alex':   { en: 'Cajon / Percussion', de: 'Cajón / Perkussion',  es: 'Cajón / Percusión' },
+    };
+
+    document.querySelectorAll('.note-head').forEach(function(el) {
+      el.addEventListener('mouseenter', function(e) {
+        const member = el.dataset.member;
+        const note   = el.dataset.note;
+        const lang   = currentLang;
+        popNote.textContent = note;
+        popName.textContent = member;
+        popRole.textContent = ROLES[member] ? ROLES[member][lang] || ROLES[member]['en'] : '';
+        // Position popup relative to wrap
+        const wrapRect = wrap.getBoundingClientRect();
+        const elRect   = el.getBoundingClientRect();
+        const cx = elRect.left + elRect.width / 2 - wrapRect.left;
+        const cy = elRect.top - wrapRect.top;
+        popup.style.left = cx + 'px';
+        popup.style.top  = cy + 'px';
+        popup.classList.add('visible');
+      });
+      el.addEventListener('mouseleave', function() {
+        popup.classList.remove('visible');
+      });
+    });
+  })();
 
   // ── Active nav highlight on scroll ──
   const sections = document.querySelectorAll('section[id]');
