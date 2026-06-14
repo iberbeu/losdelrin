@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Los del Rin</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── COLOUR PALETTE ─────────────────────────────────────────── */
+    :root {
+      --cream:    #F5E6D8;
+      --burgundy: #8B1A2F;
+      --dark-red: #6A1422;
+      --navy:     #1C2B4A;
+      --gold:     #C8893A;
+      --charcoal: #2C2C2C;
+      --white:    #FFFFFF;
+      --light-bg: #FBF3EC;
+    }
+
+    /* ─── RESET & BASE ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--light-bg);
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── LANGUAGE SWITCHER ──────────────────────────────────────── */
+    #lang-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--navy);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 6px 24px;
+      gap: 6px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: var(--cream);
+      padding: 3px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      background: var(--burgundy);
+      border-color: var(--burgundy);
+      color: var(--white);
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 34px; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(28, 43, 74, 0.96);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0 24px;
+    }
+    nav a {
+      color: var(--cream);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 18px;
+      font-weight: 700;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    nav a:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--navy) 0%, #0d1825 60%, var(--dark-red) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(139,26,47,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-logo {
+      width: clamp(180px, 35vw, 320px);
+      border-radius: 50%;
+      box-shadow: 0 0 60px rgba(200, 137, 58, 0.35), 0 0 120px rgba(139,26,47,0.25);
+      margin-bottom: 36px;
+    }
+    .hero-tagline {
+      color: var(--cream);
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      opacity: 0.75;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
+      color: var(--gold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+    .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--burgundy);
+      color: var(--cream);
+      padding: 12px 28px;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.15s;
+      border: 2px solid var(--burgundy);
+    }
+    .ig-btn:hover {
+      background: transparent;
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+    .ig-btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(245,230,216,0.45);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 36px;
+      background: rgba(245,230,216,0.35);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ─── SECTION SHELL ──────────────────────────────────────────── */
+    section {
+      padding: 96px 24px;
+    }
+    .section-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--navy);
+      margin-bottom: 40px;
+      position: relative;
+      padding-bottom: 18px;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 56px; height: 3px;
+      background: var(--burgundy);
+      border-radius: 2px;
+    }
+    .section-title.centered { text-align: center; }
+    .section-title.centered::after { left: 50%; transform: translateX(-50%); }
+
+    /* ─── CONCERTS ───────────────────────────────────────────────── */
+    #concerts { background: var(--navy); }
+    #concerts .section-label { color: var(--gold); }
+    #concerts .section-title { color: var(--cream); }
+    #concerts .section-title::after { background: var(--gold); }
+
+    .concert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .concert-item {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 22px 28px;
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid var(--burgundy);
+      transition: background 0.2s;
+    }
+    .concert-item:hover { background: rgba(255,255,255,0.08); }
+    .concert-date {
+      text-align: center;
+    }
+    .concert-date .day {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .concert-date .month {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,230,216,0.55);
+    }
+    .concert-info .venue {
+      font-weight: 700;
+      color: var(--cream);
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+    .concert-info .location {
+      font-size: 0.82rem;
+      color: rgba(245,230,216,0.55);
+    }
+    .concert-ticket {
+      display: inline-block;
+      border: 1px solid var(--burgundy);
+      color: var(--cream);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 2px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .concert-ticket:hover { background: var(--burgundy); }
+    .no-concerts {
+      color: rgba(245,230,216,0.45);
+      font-style: italic;
+      font-size: 0.95rem;
+      padding: 20px 0;
+    }
+
+    /* ─── BAND ───────────────────────────────────────────────────── */
+    #band { background: var(--light-bg); }
+    .band-intro-text {
+      max-width: 720px;
+      font-size: 1.05rem;
+      color: #4a4a4a;
+      margin-bottom: 64px;
+      line-height: 1.8;
+    }
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 24px;
+    }
+    .member-card {
+      text-align: center;
+    }
+    .member-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--burgundy), var(--navy));
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--cream);
+      letter-spacing: -1px;
+      box-shadow: 0 4px 16px rgba(139,26,47,0.2);
+    }
+    .member-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .member-role {
+      font-size: 0.75rem;
+      color: var(--burgundy);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── PHILOSOPHY BOX ─────────────────────────────────────────── */
+    .philosophy-box {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 48px 56px;
+      border-radius: 2px;
+      position: relative;
+      margin-top: 64px;
+      overflow: hidden;
+    }
+    .philosophy-box::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 14rem;
+      color: rgba(200,137,58,0.08);
+      position: absolute;
+      top: -40px; left: 20px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .philosophy-box p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      position: relative;
+      z-index: 1;
+    }
+    .philosophy-box .philo-attr {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ─── CONTACT & MUSIC ───────────────────────────────────────── */
+    #contact { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 680px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    .music-style h3 {
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .music-style p {
+      font-size: 0.95rem;
+      color: #4a4a4a;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    .style-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .style-tag {
+      background: var(--navy);
+      color: var(--cream);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+    .contact-line svg {
+      width: 20px; height: 20px;
+      fill: var(--burgundy);
+      flex-shrink: 0;
+    }
+    .contact-line a { color: var(--burgundy); font-weight: 700; }
+    .contact-line a:hover { text-decoration: underline; }
+
+    /* ─── VIDEOS ─────────────────────────────────────────────────── */
+    #videos { background: var(--charcoal); }
+    #videos .section-label { color: var(--gold); }
+    #videos .section-title { color: var(--cream); }
+    #videos .section-title::after { background: var(--gold); }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(200,137,58,0.35);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: rgba(245,230,216,0.35);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .video-placeholder:hover {
+      background: rgba(255,255,255,0.1);
+      color: rgba(245,230,216,0.6);
+    }
+    .video-placeholder svg {
+      width: 40px; height: 40px;
+      fill: currentColor;
+    }
+    .video-placeholder span {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .video-embed {
+      aspect-ratio: 16/9;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .video-embed iframe {
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(245,230,216,0.45);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+    footer span { color: var(--burgundy); }
+
+    /* ─── ORNAMENT ───────────────────────────────────────────────── */
+    .ornament {
+      text-align: center;
+      color: var(--burgundy);
+      font-size: 1.4rem;
+      margin: 40px 0;
+      opacity: 0.4;
+      letter-spacing: 0.3em;
+    }
+
+    /* ─── RESPONSIVE NAV ─────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      nav a { padding: 12px 10px; font-size: 0.68rem; }
+      .concert-item { grid-template-columns: 70px 1fr; }
+      .concert-ticket { display: none; }
+      .philosophy-box { padding: 32px 28px; }
+    }
+
+    /* ─── HIDDEN LANGUAGE BLOCKS ─────────────────────────────────── */
+    [data-lang] { display: none; }
+    [data-lang].lang-active { display: block; }
+    [data-lang-inline] { display: none; }
+    [data-lang-inline].lang-active { display: inline; }
+  </style>
+</head>
+<body>
+
+<!-- ── LANGUAGE BAR ── -->
+<div id="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn"        onclick="setLang('de')">DE</button>
+  <button class="lang-btn"        onclick="setLang('es')">ES</button>
+</div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#hero"     data-nav="nav-home"></a>
+  <a href="#concerts" data-nav="nav-concerts"></a>
+  <a href="#band"     data-nav="nav-band"></a>
+  <a href="#contact"  data-nav="nav-contact"></a>
+  <a href="#videos"   data-nav="nav-videos"></a>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <img src="losdelrin_logo.jpg" alt="Los del Rin Logo" class="hero-logo" />
+  <p class="hero-tagline">Basel, Switzerland</p>
+  <h1 class="hero-title">Los del Rin</h1>
+  <p class="hero-sub">Rumba Flamenca</p>
+  <a href="https://www.instagram.com/losdelrin.bs/" target="_blank" rel="noopener" class="ig-btn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+    @losdelrin.bs
+  </a>
+  <div class="hero-scroll">
+    <span data-lang="en" class="lang-active">Scroll</span>
+    <span data-lang="de">Scrollen</span>
+    <span data-lang="es">Desliza</span>
+  </div>
+</section>
+
+<!-- ── CONCERTS ── -->
+<section id="concerts">
+  <div class="section-inner">
+    <p class="section-label">
+      <span data-lang="en" class="lang-active">Live</span>
+      <span data-lang="de">Live</span>
+      <span data-lang="es">En directo</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang="en" class="lang-active">Upcoming Concerts</span>
+      <span data-lang="de">Kommende Konzerte</span>
+      <span data-lang="es">Próximos Conciertos</span>
+    </h2>
+
+    <div class="concert-list">
+      <!-- Concert placeholder 1 -->
+      <div class="concert-item">
+        <div class="concert-date">
+          <div class="day">TBA</div>
+          <div class="month">2025</div>
+        </div>
+        <div class="concert-info">
+          <div class="venue">
+            <span data-lang="en" class="lang-active">Venue TBA</span>
+            <span data-lang="de">Veranstaltungsort folgt</span>
+            <span data-lang="es">Local por confirmar</span>
+          </div>
+          <div class="location">Basel, Switzerland</div>
+        </div>
+        <div class="concert-ticket">
+          <span data-lang="en" class="lang-active">Soon</span>
+          <span data-lang="de">Bald</span>
+          <span data-lang="es">Pronto</span>
+        </div>
+      </div>
+      <!-- Concert placeholder 2 -->
+      <div class="concert-item">
+        <div class="concert-date">
+          <div class="day">TBA</div>
+          <div class="month">2025</div>
+        </div>
+        <div class="concert-info">
+          <div class="venue">
+            <span data-lang="en" class="lang-active">Venue TBA</span>
+            <span data-lang="de">Veranstaltungsort folgt</span>
+            <span data-lang="es">Local por confirmar</span>
+          </div>
+          <div class="location">Basel, Switzerland</div>
+        </div>
+        <div class="concert-ticket">
+          <span data-lang="en" class="lang-active">Soon</span>
+          <span data-lang="de">Bald</span>
+          <span data-lang="es">Pronto</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ✦ ✦</div>
+    <p class="no-concerts">
+      <span data-lang="en" class="lang-active">More dates coming soon — follow us on Instagram for updates.</span>
+      <span data-lang="de">Weitere Termine folgen bald — folgt uns auf Instagram für Updates.</span>
+      <span data-lang="es">Más fechas próximamente — síguenos en Instagram para novedades.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ── BAND ── -->
+<section id="band">
+  <div class="section-inner">
+    <p class="section-label">
+      <span data-lang="en" class="lang-active">Who We Are</span>
+      <span data-lang="de">Wer wir sind</span>
+      <span data-lang="es">Quiénes somos</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang="en" class="lang-active">The Band</span>
+      <span data-lang="de">Die Band</span>
+      <span data-lang="es">La Banda</span>
+    </h2>
+
+    <!-- Band intro text -->
+    <div class="band-intro-text">
+      <div data-lang="en" class="lang-active">
+        <p>We are <strong>Los del Rin</strong> — a rumba flamenca band born in the heart of Basel, Switzerland, on the banks of the Rhine. Seven musicians from different walks of life, united by a shared passion for the raw joy and soulful fire of Andalusian rumba.</p>
+        <p style="margin-top:14px">We carry the spirit of the Spanish patio — spontaneous, warm, and full of life — and we plant it here in the north, where the Rhine flows and the unexpected flourishes.</p>
+      </div>
+      <div data-lang="de">
+        <p>Wir sind <strong>Los del Rin</strong> — eine Rumba-Flamenca-Band, geboren im Herzen Basels, am Ufer des Rheins. Sieben Musikerinnen und Musiker aus verschiedenen Lebenswelten, vereint durch eine gemeinsame Leidenschaft für die rohe Freude und die feurige Seele der andalusischen Rumba.</p>
+        <p style="margin-top:14px">Wir tragen den Geist des spanischen Innenhofs in uns — spontan, herzlich und voller Leben — und pflanzen ihn hier im Norden, wo der Rhein fliesst und das Unerwartete aufblüht.</p>
+      </div>
+      <div data-lang="es">
+        <p>Somos <strong>Los del Rin</strong> — una banda de rumba flamenca nacida en el corazón de Basilea, Suiza, a orillas del Rin. Siete músicos de distintos mundos, unidos por la pasión compartida por la alegría desbordante y el fuego del alma de la rumba andaluza.</p>
+        <p style="margin-top:14px">Llevamos el espíritu del patio español — espontáneo, cálido y lleno de vida — y lo plantamos aquí en el norte, donde el Rin fluye y lo inesperado florece.</p>
+      </div>
+    </div>
+
+    <!-- Members -->
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="member-avatar">Cé</div>
+        <div class="member-name">César</div>
+        <div class="member-role">
+          <span data-lang="en" class="lang-active">Vocals / Guitar</span>
+          <span data-lang="de">Gesang / Gitarre</span>
+          <span data-lang="es">Voz / Guitarra</span>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">Mi</div>
+        <div class="member-name">Miguel</div>
+        <div class="member-role">
+          <span data-lang="en" class="lang-active">Guitar</span>
+          <span data-lang="de">Gitarre</span>
+          <span data-lang="es">Guitarra</span>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">Ál</div>
+        <div class="member-name">Álvaro</div>
+        <div class="member-role">
+          <span data-lang="en" class="lang-active">Percussion</span>
+          <span data-lang="de">Perkussion</span>
+          <span data-lang="es">Percusión</span>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">Jo</div>
+        <div class="member-name">Jorge</div>
+        <div class="member-role">
+          <span data-lang="en" class="lang-active">Bass</span>
+          <span data-lang="de">Bass</span>
+          <span data-lang="es">Bajo</span>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">Im</div>
+        <div class="member-name">Imanol</div>
+        <div class="member-role">
+          <span data-lang="en" class="lang-active">Vocals / Guitar</span>
+          <span data-lang="de">Gesang / Gitarre</span>
+          <span data-lang="es">Voz / Guitarra</span>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">Ad</div>
+        <div class="member-name">Adrián</div>
+        <div class="member-role">
+          <span data-lang="en" class="lang-active">Guitar</span>
+          <span data-lang="de">Gitarre</span>
+          <span data-lang="es">Guitarra</span>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">Al</div>
+        <div class="member-name">Alex</div>
+        <div class="member-role">
+          <span data-lang="en" class="lang-active">Cajon / Percussion</span>
+          <span data-lang="de">Cajón / Perkussion</span>
+          <span data-lang="es">Cajón / Percusión</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Philosophy -->
+    <div class="philosophy-box">
+      <div data-lang="en" class="lang-active">
+        <p>Music is not a performance — it is a conversation. Every rumba we play is an invitation: to feel, to move, to forget the ordinary for a moment and remember what it means to be alive together. We do not put borders between genres or cultures. We take the roots of flamenco, breathe in the rhythms of the street, and let the Rhine write its own verse.</p>
+        <p class="philo-attr">— Our Philosophy</p>
+      </div>
+      <div data-lang="de">
+        <p>Musik ist keine Vorstellung — sie ist ein Gespräch. Jede Rumba, die wir spielen, ist eine Einladung: zu fühlen, sich zu bewegen, für einen Moment das Gewöhnliche zu vergessen und sich daran zu erinnern, was es bedeutet, gemeinsam lebendig zu sein. Wir setzen keine Grenzen zwischen Genres oder Kulturen. Wir nehmen die Wurzeln des Flamenco, atmen die Rhythmen der Strasse ein und lassen den Rhein seinen eigenen Vers schreiben.</p>
+        <p class="philo-attr">— Unsere Philosophie</p>
+      </div>
+      <div data-lang="es">
+        <p>La música no es una actuación — es una conversación. Cada rumba que tocamos es una invitación: a sentir, a moverse, a olvidar por un momento lo cotidiano y recordar lo que significa estar vivos juntos. No ponemos fronteras entre géneros ni culturas. Tomamos las raíces del flamenco, respiramos los ritmos de la calle y dejamos que el Rin escriba su propio verso.</p>
+        <p class="philo-attr">— Nuestra filosofía</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONTACT & MUSIC ── -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">
+      <span data-lang="en" class="lang-active">Get in Touch</span>
+      <span data-lang="de">Kontakt</span>
+      <span data-lang="es">Contacto</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang="en" class="lang-active">Contact &amp; Music</span>
+      <span data-lang="de">Kontakt &amp; Musik</span>
+      <span data-lang="es">Contacto &amp; Música</span>
+    </h2>
+
+    <div class="contact-grid">
+
+      <!-- Music style -->
+      <div class="music-style">
+        <h3>
+          <span data-lang="en" class="lang-active">What We Play</span>
+          <span data-lang="de">Was wir spielen</span>
+          <span data-lang="es">Qué tocamos</span>
+        </h3>
+        <div data-lang="en" class="lang-active">
+          <p>Our music is rooted in <strong>Rumba Flamenca</strong> — the jubilant, percussive cousin of flamenco that was born in Andalusia and carried to the world. Think rhythmic guitars, handclaps, driving bass, and voices full of joy and longing.</p>
+          <p>We draw from the classic rumbas of the Barcelona and Gypsy traditions, weaving in touches of Latin groove and Mediterranean warmth. Every show is built to make you dance.</p>
+        </div>
+        <div data-lang="de">
+          <p>Unsere Musik wurzelt in der <strong>Rumba Flamenca</strong> — dem jubilierenden, perkussiven Verwandten des Flamenco, der in Andalusien geboren und in die Welt getragen wurde. Rhythmische Gitarren, Handklatschen, treibender Bass und Stimmen voller Freude und Sehnsucht.</p>
+          <p>Wir schöpfen aus den klassischen Rumbas der barcelonesischen und Gipsy-Tradition und verweben Elemente des Latin Groove und mediterraner Wärme. Jede Show ist dafür gemacht, dass ihr tanzt.</p>
+        </div>
+        <div data-lang="es">
+          <p>Nuestra música tiene raíces en la <strong>Rumba Flamenca</strong> — la exuberante y percusiva prima del flamenco, nacida en Andalucía y llevada al mundo. Guitarras rítmicas, palmas, bajo contundente y voces llenas de alegría y añoranza.</p>
+          <p>Bebemos de las rumbas clásicas de la tradición catalana y gitana, entretejiendo toques de groove latino y calidez mediterránea. Cada actuación está hecha para que bailéis.</p>
+        </div>
+        <div class="style-tags">
+          <span class="style-tag">Rumba Flamenca</span>
+          <span class="style-tag">Flamenco</span>
+          <span class="style-tag">Latin</span>
+          <span class="style-tag">Gipsy</span>
+          <span class="style-tag">Mediterranean</span>
+        </div>
+      </div>
+
+      <!-- Contact info -->
+      <div class="contact-info">
+        <h3>
+          <span data-lang="en" class="lang-active">Reach Us</span>
+          <span data-lang="de">So erreicht ihr uns</span>
+          <span data-lang="es">Cómo contactarnos</span>
+        </h3>
+
+        <div class="contact-line">
+          <!-- Instagram icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span><a href="https://www.instagram.com/losdelrin.bs/" target="_blank" rel="noopener">@losdelrin.bs</a></span>
+        </div>
+
+        <div class="contact-line">
+          <!-- Location icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+          </svg>
+          <span>Basel, Switzerland</span>
+        </div>
+
+        <div class="contact-line">
+          <!-- Mail icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          <span>
+            <span data-lang="en" class="lang-active">Get in touch via Instagram — we'd love to hear from you!</span>
+            <span data-lang="de">Schreibt uns auf Instagram — wir freuen uns von euch zu hören!</span>
+            <span data-lang="es">Contáctanos por Instagram — ¡nos encanta saber de vosotros!</span>
+          </span>
+        </div>
+
+        <div class="contact-line">
+          <!-- Music note icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+          <span>
+            <span data-lang="en" class="lang-active">Available for private events, festivals &amp; cultural venues</span>
+            <span data-lang="de">Verfügbar für Privatveranstaltungen, Festivals &amp; Kulturstätten</span>
+            <span data-lang="es">Disponibles para eventos privados, festivales &amp; espacios culturales</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── VIDEOS ── -->
+<section id="videos">
+  <div class="section-inner">
+    <p class="section-label">
+      <span data-lang="en" class="lang-active">Watch</span>
+      <span data-lang="de">Anschauen</span>
+      <span data-lang="es">Míranos</span>
+    </p>
+    <h2 class="section-title centered">
+      <span data-lang="en" class="lang-active">Videos</span>
+      <span data-lang="de">Videos</span>
+      <span data-lang="es">Vídeos</span>
+    </h2>
+
+    <div class="videos-grid">
+      <!-- Placeholder slots — replace with real embeds -->
+      <div class="video-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span>
+          <span data-lang="en" class="lang-active">Video coming soon</span>
+          <span data-lang="de">Video folgt bald</span>
+          <span data-lang="es">Vídeo próximamente</span>
+        </span>
+      </div>
+      <div class="video-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span>
+          <span data-lang="en" class="lang-active">Video coming soon</span>
+          <span data-lang="de">Video folgt bald</span>
+          <span data-lang="es">Vídeo próximamente</span>
+        </span>
+      </div>
+      <div class="video-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span>
+          <span data-lang="en" class="lang-active">Video coming soon</span>
+          <span data-lang="de">Video folgt bald</span>
+          <span data-lang="es">Vídeo próximamente</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- HOW TO ADD VIDEOS — comment for editing:
+      To embed a YouTube video, replace a .video-placeholder div with:
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+      </div>
+    -->
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 Los del Rin · Basel, Switzerland</p>
+  <p style="margin-top:6px">Made with <span>♥</span> and Rumba</p>
+</footer>
+
+<!-- ── JS ── -->
+<script>
+  // ── Language switcher ──
+  const LANGS = ['en', 'de', 'es'];
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+
+    // Update all block lang elements
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.classList.toggle('lang-active', el.dataset.lang === lang);
+    });
+
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+
+    // Update lang buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+  }
+
+  // ── Nav labels (data-nav) ──
+  const NAV_LABELS = {
+    'nav-home':     { en: 'Home',     de: 'Start',    es: 'Inicio'   },
+    'nav-concerts': { en: 'Concerts', de: 'Konzerte', es: 'Conciertos'},
+    'nav-band':     { en: 'The Band', de: 'Die Band', es: 'La Banda' },
+    'nav-contact':  { en: 'Contact',  de: 'Kontakt',  es: 'Contacto' },
+    'nav-videos':   { en: 'Videos',   de: 'Videos',   es: 'Vídeos'   },
+  };
+
+  function updateNav() {
+    document.querySelectorAll('[data-nav]').forEach(el => {
+      const key = el.dataset.nav;
+      if (NAV_LABELS[key]) el.textContent = NAV_LABELS[key][currentLang];
+    });
+  }
+
+  // Override setLang to also update nav
+  const _setLang = setLang;
+  window.setLang = function(lang) {
+    _setLang(lang);
+    updateNav();
+  };
+
+  // Init
+  updateNav();
+  setLang('en');
+
+  // ── Active nav highlight on scroll ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const offset = 100;
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - offset) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold)' : '';
+      a.style.borderBottomColor = a.getAttribute('href') === '#' + current
+        ? 'var(--gold)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
