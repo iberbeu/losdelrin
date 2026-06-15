@@ -643,7 +643,7 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <img src="losdelrin_logo.jpg" alt="Los del Rin Logo" class="hero-logo" />
+  <img src="img/losdelrin_logo.jpg" alt="Los del Rin Logo" class="hero-logo" />
   <p class="hero-tagline">Basel, Switzerland</p>
   <h1 class="hero-title">Los del Rin</h1>
   <p class="hero-sub">Rumba Flamenca</p>
@@ -821,18 +821,39 @@
             Do=170  Re=280  Mi=390  Fa=500  Sol=610  La=720  Si=830
         -->
 
+        <!-- ── CLIP PATHS FOR PROFILE PHOTOS ── -->
+        <defs>
+          <clipPath id="clip-do">
+            <circle cx="170" cy="360" r="37"/>
+          </clipPath>
+          <clipPath id="clip-re">
+            <circle cx="280" cy="335" r="37"/>
+          </clipPath>
+          <clipPath id="clip-sol">
+            <circle cx="610" cy="260" r="37"/>
+          </clipPath>
+        </defs>
+
         <!-- Do – César (ledger line) -->
         <line class="ledger-line" x1="132" y1="360" x2="208" y2="360"/>
         <circle class="note-head" id="note-do" cx="170" cy="360" r="38"
                 data-member="César" data-note="Do"
                 data-role-en="Vocals" data-role-de="Gesang" data-role-es="Cante"/>
-        <text class="note-label" x="170" y="360">Cé</text>
+        <image href="img/cesar_profile.jpg"
+               x="132" y="322" width="76" height="76"
+               clip-path="url(#clip-do)"
+               preserveAspectRatio="xMidYMid slice"
+               pointer-events="none"/>
 
         <!-- Re – Miguel -->
         <circle class="note-head" id="note-re" cx="280" cy="335" r="38"
                 data-member="Miguel" data-note="Re"
                 data-role-en="Bass" data-role-de="Bass" data-role-es="Bajo"/>
-        <text class="note-label" x="280" y="335">Mi</text>
+        <image href="img/miguel_profile.jpg"
+               x="242" y="297" width="76" height="76"
+               clip-path="url(#clip-re)"
+               preserveAspectRatio="xMidYMid slice"
+               pointer-events="none"/>
 
         <!-- Mi – Álvaro -->
         <circle class="note-head" id="note-mi" cx="390" cy="310" r="38"
@@ -850,7 +871,11 @@
         <circle class="note-head" id="note-sol" cx="610" cy="260" r="38"
                 data-member="Imanol" data-note="Sol"
                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
-        <text class="note-label" x="610" y="260">Im</text>
+        <image href="img/imanol_profile.jpg"
+               x="572" y="222" width="76" height="76"
+               clip-path="url(#clip-sol)"
+               preserveAspectRatio="xMidYMid slice"
+               pointer-events="none"/>
 
         <!-- La – Adrián -->
         <circle class="note-head" id="note-la" cx="720" cy="235" r="38"
@@ -1081,7 +1106,7 @@
     <div class="videos-grid">
       <!-- Placeholder slots — replace with real embeds -->
       <a href="https://youtu.be/z4_GlcaE5WU?t=109" target="_blank" rel="noopener" class="video-link-card">
-        <img src="thumbnail_video1.png" alt="Los del Rin video" />
+        <img src="img/thumbnail_video1.png" alt="Los del Rin video" />
         <div class="video-link-overlay">
           <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </div>
