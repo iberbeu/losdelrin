@@ -284,6 +284,19 @@
       cursor: pointer;
     }
     .concert-ticket:hover { background: var(--burgundy); }
+    .maps-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      color: var(--gold);
+      opacity: 0.75;
+      transition: opacity 0.2s, transform 0.15s;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .maps-link:hover { opacity: 1; transform: scale(1.15); }
+    .maps-link svg { width: 18px; height: 18px; fill: currentColor; }
     .no-concerts {
       color: rgba(245,230,216,0.45);
       font-style: italic;
@@ -757,9 +770,12 @@
         </div>
         <div class="concert-info">
           <div class="venue">
-            <span data-lang="en" class="lang-active">Food Truck Agatha</span>
-            <span data-lang="de">Food Truck Agatha</span>
-            <span data-lang="es">Food Truck Agatha</span>
+            <span data-lang="en" class="lang-active">La Isla Food Truck</span>
+            <span data-lang="de">La Isla Food Truck</span>
+            <span data-lang="es">La Isla Food Truck</span>
+            <a href="https://maps.app.goo.gl/VsxSjAuJhbWCbon98" target="_blank" rel="noopener" class="maps-link" title="Open in Google Maps" aria-label="Open La Isla Food Truck in Google Maps">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+            </a>
           </div>
           <div class="location">Basel, Switzerland</div>
         </div>
@@ -780,6 +796,9 @@
             <span data-lang="en" class="lang-active">Gleis 58</span>
             <span data-lang="de">Gleis 58</span>
             <span data-lang="es">Gleis 58</span>
+            <a href="https://maps.app.goo.gl/vd3J2YxppqCvBBCf8" target="_blank" rel="noopener" class="maps-link" title="Open in Google Maps" aria-label="Open Gleis 58 in Google Maps">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+            </a>
           </div>
           <div class="location">Basel, Switzerland</div>
         </div>
