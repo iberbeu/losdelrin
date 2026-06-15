@@ -418,6 +418,80 @@
       text-transform: uppercase;
     }
 
+    /* ─── MEMBER BIOS ───────────────────────────────────────────── */
+    .note-head { cursor: pointer; }
+    .note-head:focus { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .member-bios {
+      margin-top: 64px;
+    }
+    .bios-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--burgundy);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+    .bio-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 28px 0;
+      border-top: 1px solid rgba(139,26,47,0.15);
+    }
+    .bio-card:last-child {
+      border-bottom: 1px solid rgba(139,26,47,0.15);
+    }
+    .bio-card-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--burgundy);
+    }
+    .bio-card-photo-placeholder {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--burgundy), var(--dark-red));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cream);
+      flex-shrink: 0;
+      border: 2px solid var(--burgundy);
+    }
+    .bio-card-body {}
+    .bio-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .bio-card-role {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .bio-card-text {
+      font-size: 0.92rem;
+      color: #4a4a4a;
+      line-height: 1.8;
+    }
+    @media (max-width: 500px) {
+      .bio-card { grid-template-columns: 1fr; }
+      .bio-card-photo, .bio-card-photo-placeholder { margin: 0 auto; }
+    }
+
     /* ─── PHILOSOPHY BOX ─────────────────────────────────────────── */
     .philosophy-box {
       background: var(--navy);
@@ -780,7 +854,7 @@
       </div>
 
       <svg class="pentagram-svg" id="pentagram-svg"
-           viewBox="0 0 960 410" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 960 450" xmlns="http://www.w3.org/2000/svg"
            aria-label="Band members on a musical staff">
 
         <!-- ── STAFF LINES ── -->
@@ -844,133 +918,231 @@
                clip-path="url(#clip-do)"
                preserveAspectRatio="xMidYMid slice"
                pointer-events="none"/>
+        <!-- label: instrument icon + note name -->
+        <!-- 🎤 microphone (vocals) -->
+        <text x="170" y="415" text-anchor="middle" font-size="16" pointer-events="none">🎤 Do</text>
 
-        <!-- Re – Miguel -->
+        <!-- Re – Miguel de la Montse -->
         <circle class="note-head" id="note-re" cx="280" cy="335" r="38"
-                data-member="Miguel" data-note="Re"
+                data-member="Miguel de la Montse" data-note="Re"
                 data-role-en="Bass" data-role-de="Bass" data-role-es="Bajo"/>
         <image href="img/miguel_profile.jpg"
                x="242" y="297" width="76" height="76"
                clip-path="url(#clip-re)"
                preserveAspectRatio="xMidYMid slice"
                pointer-events="none"/>
+        <!-- 🎸 bass guitar -->
+        <text x="280" y="390" text-anchor="middle" font-size="16" pointer-events="none">🎸 Re</text>
 
         <!-- Mi – Álvaro -->
         <circle class="note-head" id="note-mi" cx="390" cy="310" r="38"
                 data-member="Álvaro" data-note="Mi"
                 data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
         <text class="note-label" x="390" y="310">Ál</text>
+        <!-- 🥁 drums -->
+        <text x="390" y="365" text-anchor="middle" font-size="16" pointer-events="none">🥁 Mi</text>
 
         <!-- Fa – Jorge -->
         <circle class="note-head" id="note-fa" cx="500" cy="285" r="38"
                 data-member="Jorge" data-note="Fa"
                 data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
         <text class="note-label" x="500" y="285">Jo</text>
+        <!-- 🥁 drums -->
+        <text x="500" y="340" text-anchor="middle" font-size="16" pointer-events="none">🥁 Fa</text>
 
-        <!-- Sol – Imanol -->
+        <!-- Sol – Imanol de la Marga -->
         <circle class="note-head" id="note-sol" cx="610" cy="260" r="38"
-                data-member="Imanol" data-note="Sol"
+                data-member="Imanol de la Marga" data-note="Sol"
                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
         <image href="img/imanol_profile.jpg"
                x="572" y="222" width="76" height="76"
                clip-path="url(#clip-sol)"
                preserveAspectRatio="xMidYMid slice"
                pointer-events="none"/>
+        <!-- 🎸 guitar -->
+        <text x="610" y="315" text-anchor="middle" font-size="16" pointer-events="none">🎸 Sol</text>
 
         <!-- La – Adrián -->
         <circle class="note-head" id="note-la" cx="720" cy="235" r="38"
                 data-member="Adrián" data-note="La"
                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
         <text class="note-label" x="720" y="235">Ad</text>
+        <!-- 🎸 guitar -->
+        <text x="720" y="290" text-anchor="middle" font-size="16" pointer-events="none">🎸 La</text>
 
         <!-- Si – Alex -->
         <circle class="note-head" id="note-si" cx="830" cy="210" r="38"
                 data-member="Alex" data-note="Si"
                 data-role-en="Piano" data-role-de="Klavier" data-role-es="Piano"/>
         <text class="note-label" x="830" y="210">Al</text>
+        <!-- 🎹 piano -->
+        <text x="830" y="265" text-anchor="middle" font-size="16" pointer-events="none">🎹 Si</text>
 
       </svg>
     </div>
 
-    <!-- Legend below staff -->
-    <div class="pentagram-legend">
-      <div class="legend-item">
-        <div class="legend-dot">Do</div>
-        <div class="legend-text">
-          <div class="l-name">César</div>
-          <div class="l-role">
+    <!-- Member Bios -->
+    <div class="member-bios">
+      <p class="bios-title">
+        <span data-lang="en" class="lang-active">Meet the Members</span>
+        <span data-lang="de">Die Mitglieder</span>
+        <span data-lang="es">Los músicos</span>
+      </p>
+
+      <!-- César -->
+      <div class="bio-card" id="bio-cesar">
+        <img src="img/cesar_profile.jpg" alt="César" class="bio-card-photo" />
+        <div class="bio-card-body">
+          <div class="bio-card-name">Do: César</div>
+          <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Vocals</span>
             <span data-lang="de">Gesang</span>
             <span data-lang="es">Cante</span>
           </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
         </div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot">Re</div>
-        <div class="legend-text">
-          <div class="l-name">Miguel</div>
-          <div class="l-role">
+
+      <!-- Miguel de la Montse -->
+      <div class="bio-card" id="bio-miguel">
+        <img src="img/miguel_profile.jpg" alt="Miguel de la Montse" class="bio-card-photo" />
+        <div class="bio-card-body">
+          <div class="bio-card-name">Re: Miguel de la Montse</div>
+          <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Bass</span>
             <span data-lang="de">Bass</span>
             <span data-lang="es">Bajo</span>
           </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            Miguel came to music by the least academic and most authentic route: the street, rehearsal spaces, and years of playing out of pure passion. He never studied music formally, but has spent years learning by listening, experimenting, and sharing stages with other musicians. Between 2014 and 2015 he was part of the band La Banda Ancha, performing as singer and guitarist. Over time, he found his true instrument in the bass, bringing personality and solidity to every song. For Miguel, music is not a business or a profession — it is a form of expression, friendship, and joy that continues to be part of his life every single day.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Miguel kam zur Musik auf dem denkbar unwissenschaftlichsten und authentischsten Weg: die Straße, Proberäume und Jahre des Spielens aus purer Leidenschaft. Er hat Musik nie formal studiert, aber verbrachte Jahre damit, durch Zuhören, Experimentieren und das Teilen der Bühne mit anderen Musikern zu lernen. Zwischen 2014 und 2015 war er Teil der Band La Banda Ancha, wo er als Sänger und Gitarrist auftrat. Mit der Zeit fand er im Bass sein Hauptinstrument und bringt jedem Stück Persönlichkeit und Stabilität. Für Miguel ist Musik weder ein Geschäft noch ein Beruf — es ist eine Form des Ausdrucks, der Freundschaft und des Genusses, die täglich ein Teil seines Lebens bleibt.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Miguel llegó a la música por el camino menos académico y más auténtico: la calle, los locales de ensayo y las horas tocando por pura pasión. Nunca estudió música de forma reglada, pero lleva años aprendiendo a base de escuchar, experimentar y compartir escenario con otros músicos. Entre 2014 y 2015 formó parte de la banda La Banda Ancha, donde actuó como cantante y guitarrista. Con el tiempo encontró en el bajo su instrumento principal, aportando personalidad y solidez a cada tema. Para Miguel, la música no es un negocio ni una profesión: es una forma de expresión, amistad y disfrute que sigue formando parte de su vida día tras día.
+          </div>
         </div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot">Mi</div>
-        <div class="legend-text">
-          <div class="l-name">Álvaro</div>
-          <div class="l-role">
+
+      <!-- Álvaro -->
+      <div class="bio-card" id="bio-alvaro">
+        <div class="bio-card-photo-placeholder">Ál</div>
+        <div class="bio-card-body">
+          <div class="bio-card-name">Mi: Álvaro</div>
+          <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Percussion</span>
             <span data-lang="de">Perkussion</span>
             <span data-lang="es">Percusión</span>
           </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
         </div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot">Fa</div>
-        <div class="legend-text">
-          <div class="l-name">Jorge</div>
-          <div class="l-role">
+
+      <!-- Jorge -->
+      <div class="bio-card" id="bio-jorge">
+        <div class="bio-card-photo-placeholder">Jo</div>
+        <div class="bio-card-body">
+          <div class="bio-card-name">Fa: Jorge</div>
+          <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Percussion</span>
             <span data-lang="de">Perkussion</span>
             <span data-lang="es">Percusión</span>
           </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
         </div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot">Sol</div>
-        <div class="legend-text">
-          <div class="l-name">Imanol</div>
-          <div class="l-role">
+
+      <!-- Imanol de la Marga -->
+      <div class="bio-card" id="bio-imanol">
+        <img src="img/imanol_profile.jpg" alt="Imanol de la Marga" class="bio-card-photo" />
+        <div class="bio-card-body">
+          <div class="bio-card-name">Sol: Imanol de la Marga</div>
+          <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Guitar</span>
             <span data-lang="de">Gitarre</span>
             <span data-lang="es">Guitarra</span>
           </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            From a young age he tried his hand at piano, guitar, and flute. Classical music wasn't his thing, so he quickly lost interest. Years later he rediscovered his love for the guitar and began putting to use what he had learned as a child. When he moved abroad, he dedicated himself to refining his flamenco technique so as not to lose his roots. Gradually drawn into the wild harmonies of jazz, he has been forging his own style — bringing a personal touch to the music of Los del Rin.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Schon als Kind versuchte er sich an Klavier, Gitarre und Flöte. Da klassische Musik nicht sein Ding war, verlor er schnell das Interesse. Jahre später entflammte seine Liebe zur Gitarre erneut, und er begann das zu nutzen, was er als Kind gelernt hatte. Als er ins Ausland zog, widmete er sich seinem Flamenco-Spiel, um seine Wurzeln nicht zu verlieren. Allmählich in die verrückte Harmonik des Jazz eingetaucht, entwickelte er seinen eigenen Stil — und bringt der Musik von Los del Rin seine ganz persönliche Note.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Ya desde pequeño lo intentó con el piano, la guitarra y la flauta. Como la música clásica no era lo suyo, en seguida perdió el interés. Tiempo después recuperó su amor a la guitarra y empezó a hacer uso de lo que había aprendido de niño. En cuanto se fue a vivir al extranjero se dedicó a mejorar su toque flamenco para no perder las raíces. Introduciéndose poco a poco en la loca armonía del jazz, ha ido creando su propio estilo, para dar su toque personal a la música de Los del Rin.
+          </div>
         </div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot">La</div>
-        <div class="legend-text">
-          <div class="l-name">Adrián</div>
-          <div class="l-role">
+
+      <!-- Adrián -->
+      <div class="bio-card" id="bio-adrian">
+        <div class="bio-card-photo-placeholder">Ad</div>
+        <div class="bio-card-body">
+          <div class="bio-card-name">La: Adrián</div>
+          <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Guitar</span>
             <span data-lang="de">Gitarre</span>
             <span data-lang="es">Guitarra</span>
           </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
         </div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot">Si</div>
-        <div class="legend-text">
-          <div class="l-name">Alex</div>
-          <div class="l-role">
+
+      <!-- Alex -->
+      <div class="bio-card" id="bio-alex">
+        <div class="bio-card-photo-placeholder">Al</div>
+        <div class="bio-card-body">
+          <div class="bio-card-name">Si: Alex</div>
+          <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Piano</span>
             <span data-lang="de">Klavier</span>
             <span data-lang="es">Piano</span>
           </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
         </div>
       </div>
+
     </div>
 
     <!-- Philosophy -->
@@ -1204,13 +1376,40 @@
 
     const ROLES = {
       'César':  { en: 'Vocals',             de: 'Gesang',              es: 'Cante'              },
-      'Miguel': { en: 'Bass',               de: 'Bass',                es: 'Bajo'               },
+      'Miguel de la Montse': { en: 'Bass',    de: 'Bass',                es: 'Bajo'               },
       'Álvaro': { en: 'Percussion',         de: 'Perkussion',          es: 'Percusión'          },
       'Jorge':  { en: 'Percussion',         de: 'Perkussion',          es: 'Percusión'          },
-      'Imanol': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
+      'Imanol de la Marga': { en: 'Guitar',  de: 'Gitarre',             es: 'Guitarra'           },
       'Adrián': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
       'Alex':   { en: 'Piano',              de: 'Klavier',             es: 'Piano'              },
     };
+
+    // ── Note click → scroll to bio card ──
+    const BIO_IDS = {
+      'César':              'bio-cesar',
+      'Miguel de la Montse':'bio-miguel',
+      'Álvaro':             'bio-alvaro',
+      'Jorge':              'bio-jorge',
+      'Imanol de la Marga': 'bio-imanol',
+      'Adrián':             'bio-adrian',
+      'Alex':               'bio-alex',
+    };
+
+    document.querySelectorAll('.note-head').forEach(function(el) {
+      el.addEventListener('click', function() {
+        const id = BIO_IDS[el.dataset.member];
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target) return;
+        const offset = 100; // account for fixed nav
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        // Brief highlight
+        target.style.transition = 'background 0.3s';
+        target.style.background = 'rgba(139,26,47,0.08)';
+        setTimeout(() => { target.style.background = ''; }, 1200);
+      });
+    });
 
     document.querySelectorAll('.note-head').forEach(function(el) {
       el.addEventListener('mouseenter', function(e) {
