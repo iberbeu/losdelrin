@@ -861,7 +861,7 @@
         Si  (B4) = 3rd line
 
       Members assigned left→right by ascending pitch:
-        Do=César  Re=Miguel  Mi=Álvaro  Fa=Jorge  Sol=Imanol  La=Adrián  Si=Alex
+        Do=Álvaro  Re=Jorge  Mi=Miguel  Fa=Imanol  Sol=Adrián  La=Álex  Si=César
     -->
     <div class="pentagram-wrap" id="pentagram-wrap">
 
@@ -922,80 +922,100 @@
           <clipPath id="clip-re">
             <circle cx="280" cy="335" r="37"/>
           </clipPath>
+          <clipPath id="clip-mi">
+            <circle cx="390" cy="310" r="37"/>
+          </clipPath>
+          <clipPath id="clip-fa">
+            <circle cx="500" cy="285" r="37"/>
+          </clipPath>
           <clipPath id="clip-sol">
             <circle cx="610" cy="260" r="37"/>
           </clipPath>
+          <clipPath id="clip-la">
+            <circle cx="720" cy="235" r="37"/>
+          </clipPath>
+          <clipPath id="clip-si">
+            <circle cx="830" cy="210" r="37"/>
+          </clipPath>
         </defs>
 
-        <!-- Do – César (ledger line) -->
+        <!-- Do – Álvaro (ledger line) -->
         <line class="ledger-line" x1="132" y1="360" x2="208" y2="360"/>
         <circle class="note-head" id="note-do" cx="170" cy="360" r="38"
-                data-member="César" data-note="Do"
-                data-role-en="Vocals" data-role-de="Gesang" data-role-es="Cante"/>
-        <image href="img/cesar_profile.jpg"
+                data-member="Álvaro" data-note="Do"
+                data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
+        <image href="img/alvaro_profile.jpg"
                x="132" y="322" width="76" height="76"
                clip-path="url(#clip-do)"
                preserveAspectRatio="xMidYMid slice"
                pointer-events="none"/>
         <!-- label: instrument icon + note name -->
-        <!-- 🎤 microphone (vocals) -->
-        <text x="170" y="415" text-anchor="middle" font-size="16" pointer-events="none">🎤 Do</text>
+        <!-- 🥁 drums -->
+        <text x="170" y="415" text-anchor="middle" font-size="16" pointer-events="none">🥁 Do</text>
 
-        <!-- Re – Miguel de la Montse -->
+        <!-- Re – Jorge -->
         <circle class="note-head" id="note-re" cx="280" cy="335" r="38"
-                data-member="Miguel de la Montse" data-note="Re"
+                data-member="Jorge" data-note="Re"
+                data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
+        <text class="note-label" x="280" y="335">Jo</text>
+        <!-- 🥁 drums -->
+        <text x="280" y="390" text-anchor="middle" font-size="16" pointer-events="none">🥁 Re</text>
+
+        <!-- Mi – Miguel de la Montse -->
+        <circle class="note-head" id="note-mi" cx="390" cy="310" r="38"
+                data-member="Miguel de la Montse" data-note="Mi"
                 data-role-en="Bass" data-role-de="Bass" data-role-es="Bajo"/>
         <image href="img/miguel_profile.jpg"
-               x="242" y="297" width="76" height="76"
-               clip-path="url(#clip-re)"
+               x="352" y="272" width="76" height="76"
+               clip-path="url(#clip-mi)"
                preserveAspectRatio="xMidYMid slice"
                pointer-events="none"/>
         <!-- 🎸 bass guitar -->
-        <text x="280" y="390" text-anchor="middle" font-size="16" pointer-events="none">🎸 Re</text>
+        <text x="390" y="365" text-anchor="middle" font-size="16" pointer-events="none">🎸 Mi</text>
 
-        <!-- Mi – Álvaro -->
-        <circle class="note-head" id="note-mi" cx="390" cy="310" r="38"
-                data-member="Álvaro" data-note="Mi"
-                data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
-        <text class="note-label" x="390" y="310">Ál</text>
-        <!-- 🥁 drums -->
-        <text x="390" y="365" text-anchor="middle" font-size="16" pointer-events="none">🥁 Mi</text>
-
-        <!-- Fa – Jorge -->
+        <!-- Fa – Imanol de la Marga -->
         <circle class="note-head" id="note-fa" cx="500" cy="285" r="38"
-                data-member="Jorge" data-note="Fa"
-                data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
-        <text class="note-label" x="500" y="285">Jo</text>
-        <!-- 🥁 drums -->
-        <text x="500" y="340" text-anchor="middle" font-size="16" pointer-events="none">🥁 Fa</text>
-
-        <!-- Sol – Imanol de la Marga -->
-        <circle class="note-head" id="note-sol" cx="610" cy="260" r="38"
-                data-member="Imanol de la Marga" data-note="Sol"
+                data-member="Imanol de la Marga" data-note="Fa"
                 data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
         <image href="img/imanol_profile.jpg"
-               x="572" y="222" width="76" height="76"
-               clip-path="url(#clip-sol)"
+               x="462" y="247" width="76" height="76"
+               clip-path="url(#clip-fa)"
                preserveAspectRatio="xMidYMid slice"
                pointer-events="none"/>
         <!-- 🎸 guitar -->
+        <text x="500" y="340" text-anchor="middle" font-size="16" pointer-events="none">🎸 Fa</text>
+
+        <!-- Sol – Adrián -->
+        <circle class="note-head" id="note-sol" cx="610" cy="260" r="38"
+                data-member="Adrián" data-note="Sol"
+                data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
+        <text class="note-label" x="610" y="260">Ad</text>
+        <!-- 🎸 guitar -->
         <text x="610" y="315" text-anchor="middle" font-size="16" pointer-events="none">🎸 Sol</text>
 
-        <!-- La – Adrián -->
+        <!-- La – Álex -->
         <circle class="note-head" id="note-la" cx="720" cy="235" r="38"
-                data-member="Adrián" data-note="La"
-                data-role-en="Guitar" data-role-de="Gitarre" data-role-es="Guitarra"/>
-        <text class="note-label" x="720" y="235">Ad</text>
-        <!-- 🎸 guitar -->
-        <text x="720" y="290" text-anchor="middle" font-size="16" pointer-events="none">🎸 La</text>
-
-        <!-- Si – Alex -->
-        <circle class="note-head" id="note-si" cx="830" cy="210" r="38"
-                data-member="Alex" data-note="Si"
+                data-member="Alex" data-note="La"
                 data-role-en="Piano" data-role-de="Klavier" data-role-es="Piano"/>
-        <text class="note-label" x="830" y="210">Al</text>
+        <image href="img/Alex_profile.jpg"
+               x="682" y="197" width="76" height="76"
+               clip-path="url(#clip-la)"
+               preserveAspectRatio="xMidYMid slice"
+               pointer-events="none"/>
         <!-- 🎹 piano -->
-        <text x="830" y="265" text-anchor="middle" font-size="16" pointer-events="none">🎹 Si</text>
+        <text x="720" y="290" text-anchor="middle" font-size="16" pointer-events="none">🎹 La</text>
+
+        <!-- Si – César -->
+        <circle class="note-head" id="note-si" cx="830" cy="210" r="38"
+                data-member="César" data-note="Si"
+                data-role-en="Vocals" data-role-de="Gesang" data-role-es="Cante"/>
+        <image href="img/cesar_profile.jpg"
+               x="792" y="172" width="76" height="76"
+               clip-path="url(#clip-si)"
+               preserveAspectRatio="xMidYMid slice"
+               pointer-events="none"/>
+        <!-- 🎤 microphone (vocals) -->
+        <text x="830" y="265" text-anchor="middle" font-size="16" pointer-events="none">🎤 Si</text>
 
       </svg>
     </div>
@@ -1008,15 +1028,15 @@
         <span data-lang="es">Los músicos</span>
       </p>
 
-      <!-- César -->
-      <div class="bio-card" id="bio-cesar">
-        <img src="img/cesar_profile.jpg" alt="César" class="bio-card-photo" />
+      <!-- Álvaro (Do) -->
+      <div class="bio-card" id="bio-alvaro">
+        <img src="img/alvaro_profile.jpg" alt="Álvaro" class="bio-card-photo" />
         <div class="bio-card-body">
-          <div class="bio-card-name">Do: César</div>
+          <div class="bio-card-name">Do: Álvaro</div>
           <div class="bio-card-role">
-            <span data-lang="en" class="lang-active">Vocals</span>
-            <span data-lang="de">Gesang</span>
-            <span data-lang="es">Cante</span>
+            <span data-lang="en" class="lang-active">Percussion</span>
+            <span data-lang="de">Perkussion</span>
+            <span data-lang="es">Percusión</span>
           </div>
           <div data-lang="en" class="bio-card-text lang-active">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -1030,11 +1050,33 @@
         </div>
       </div>
 
-      <!-- Miguel de la Montse -->
+      <!-- Jorge (Re) -->
+      <div class="bio-card" id="bio-jorge">
+        <div class="bio-card-photo-placeholder">Jo</div>
+        <div class="bio-card-body">
+          <div class="bio-card-name">Re: Jorge</div>
+          <div class="bio-card-role">
+            <span data-lang="en" class="lang-active">Percussion</span>
+            <span data-lang="de">Perkussion</span>
+            <span data-lang="es">Percusión</span>
+          </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+        </div>
+      </div>
+
+      <!-- Miguel de la Montse (Mi) -->
       <div class="bio-card" id="bio-miguel">
         <img src="img/miguel_profile.jpg" alt="Miguel de la Montse" class="bio-card-photo" />
         <div class="bio-card-body">
-          <div class="bio-card-name">Re: Miguel de la Montse</div>
+          <div class="bio-card-name">Mi: Miguel de la Montse</div>
           <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Bass</span>
             <span data-lang="de">Bass</span>
@@ -1052,55 +1094,11 @@
         </div>
       </div>
 
-      <!-- Álvaro -->
-      <div class="bio-card" id="bio-alvaro">
-        <div class="bio-card-photo-placeholder">Ál</div>
-        <div class="bio-card-body">
-          <div class="bio-card-name">Mi: Álvaro</div>
-          <div class="bio-card-role">
-            <span data-lang="en" class="lang-active">Percussion</span>
-            <span data-lang="de">Perkussion</span>
-            <span data-lang="es">Percusión</span>
-          </div>
-          <div data-lang="en" class="bio-card-text lang-active">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </div>
-          <div data-lang="de" class="bio-card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </div>
-          <div data-lang="es" class="bio-card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </div>
-        </div>
-      </div>
-
-      <!-- Jorge -->
-      <div class="bio-card" id="bio-jorge">
-        <div class="bio-card-photo-placeholder">Jo</div>
-        <div class="bio-card-body">
-          <div class="bio-card-name">Fa: Jorge</div>
-          <div class="bio-card-role">
-            <span data-lang="en" class="lang-active">Percussion</span>
-            <span data-lang="de">Perkussion</span>
-            <span data-lang="es">Percusión</span>
-          </div>
-          <div data-lang="en" class="bio-card-text lang-active">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </div>
-          <div data-lang="de" class="bio-card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </div>
-          <div data-lang="es" class="bio-card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </div>
-        </div>
-      </div>
-
-      <!-- Imanol de la Marga -->
+      <!-- Imanol de la Marga (Fa) -->
       <div class="bio-card" id="bio-imanol">
         <img src="img/imanol_profile.jpg" alt="Imanol de la Marga" class="bio-card-photo" />
         <div class="bio-card-body">
-          <div class="bio-card-name">Sol: Imanol de la Marga</div>
+          <div class="bio-card-name">Fa: Imanol de la Marga</div>
           <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Guitar</span>
             <span data-lang="de">Gitarre</span>
@@ -1118,11 +1116,11 @@
         </div>
       </div>
 
-      <!-- Adrián -->
+      <!-- Adrián (Sol) -->
       <div class="bio-card" id="bio-adrian">
         <div class="bio-card-photo-placeholder">Ad</div>
         <div class="bio-card-body">
-          <div class="bio-card-name">La: Adrián</div>
+          <div class="bio-card-name">Sol: Adrián</div>
           <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Guitar</span>
             <span data-lang="de">Gitarre</span>
@@ -1140,15 +1138,37 @@
         </div>
       </div>
 
-      <!-- Alex -->
+      <!-- Alex (La) -->
       <div class="bio-card" id="bio-alex">
-        <div class="bio-card-photo-placeholder">Al</div>
+        <img src="img/Alex_profile.jpg" alt="Alex" class="bio-card-photo" />
         <div class="bio-card-body">
-          <div class="bio-card-name">Si: Alex</div>
+          <div class="bio-card-name">La: Alex</div>
           <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Piano</span>
             <span data-lang="de">Klavier</span>
             <span data-lang="es">Piano</span>
+          </div>
+          <div data-lang="en" class="bio-card-text lang-active">
+            The handsome son of El Junco. Rock &amp; Roll in his veins, rumba in his heart. One moment he's playing Beethoven, the next the Beatles, then Camarón... He always hits the right key (or note).
+          </div>
+          <div data-lang="de" class="bio-card-text">
+            Der gutaussehende Sohn des Junco. Rock &amp; Roll in den Adern, Rumba im Herzen. Mal spielt er Beethoven, mal die Beatles, mal Camarón... Er trifft immer die richtige Taste (oder die richtige Note).
+          </div>
+          <div data-lang="es" class="bio-card-text">
+            El Hijo guapo del Junco. Rock &amp; Roll en las venas, rumba en el corazón. Lo mismo se toca Beethoven que los Beatles que Camarón... Atención: siempre da con la tecla (o la nota).
+          </div>
+        </div>
+      </div>
+
+      <!-- César (Si) -->
+      <div class="bio-card" id="bio-cesar">
+        <img src="img/cesar_profile.jpg" alt="César" class="bio-card-photo" />
+        <div class="bio-card-body">
+          <div class="bio-card-name">Si: César</div>
+          <div class="bio-card-role">
+            <span data-lang="en" class="lang-active">Vocals</span>
+            <span data-lang="de">Gesang</span>
+            <span data-lang="es">Cante</span>
           </div>
           <div data-lang="en" class="bio-card-text lang-active">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
