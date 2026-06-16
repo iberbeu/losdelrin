@@ -957,7 +957,11 @@
         <circle class="note-head" id="note-re" cx="280" cy="335" r="38"
                 data-member="Jorge" data-note="Re"
                 data-role-en="Percussion" data-role-de="Perkussion" data-role-es="Percusión"/>
-        <text class="note-label" x="280" y="335">Jo</text>
+        <image href="img/jorge_profile.jpg"
+               x="242" y="297" width="76" height="76"
+               clip-path="url(#clip-re)"
+               preserveAspectRatio="xMidYMid slice"
+               pointer-events="none"/>
         <!-- 🥁 drums -->
         <text x="280" y="390" text-anchor="middle" font-size="16" pointer-events="none">🥁 Re</text>
 
@@ -995,7 +999,7 @@
 
         <!-- La – Álex -->
         <circle class="note-head" id="note-la" cx="720" cy="235" r="38"
-                data-member="Alex" data-note="La"
+                data-member="Alex Juncal" data-note="La"
                 data-role-en="Piano" data-role-de="Klavier" data-role-es="Piano"/>
         <image href="img/Alex_profile.jpg"
                x="682" y="197" width="76" height="76"
@@ -1052,7 +1056,7 @@
 
       <!-- Jorge (Re) -->
       <div class="bio-card" id="bio-jorge">
-        <div class="bio-card-photo-placeholder">Jo</div>
+        <img src="img/jorge_profile.jpg" alt="Jorge" class="bio-card-photo" />
         <div class="bio-card-body">
           <div class="bio-card-name">Re: Jorge</div>
           <div class="bio-card-role">
@@ -1138,11 +1142,11 @@
         </div>
       </div>
 
-      <!-- Alex (La) -->
+      <!-- Alex Juncal (La) -->
       <div class="bio-card" id="bio-alex">
-        <img src="img/Alex_profile.jpg" alt="Alex" class="bio-card-photo" />
+        <img src="img/Alex_profile.jpg" alt="Alex Juncal" class="bio-card-photo" />
         <div class="bio-card-body">
-          <div class="bio-card-name">La: Alex</div>
+          <div class="bio-card-name">La: Alex Juncal</div>
           <div class="bio-card-role">
             <span data-lang="en" class="lang-active">Piano</span>
             <span data-lang="de">Klavier</span>
@@ -1420,7 +1424,7 @@
       'Jorge':  { en: 'Percussion',         de: 'Perkussion',          es: 'Percusión'          },
       'Imanol de la Marga': { en: 'Guitar',  de: 'Gitarre',             es: 'Guitarra'           },
       'Adrián': { en: 'Guitar',             de: 'Gitarre',             es: 'Guitarra'           },
-      'Alex':   { en: 'Piano',              de: 'Klavier',             es: 'Piano'              },
+      'Alex Juncal':   { en: 'Piano',              de: 'Klavier',             es: 'Piano'              },
     };
 
     // ── Note click → scroll to bio card ──
@@ -1431,7 +1435,7 @@
       'Jorge':              'bio-jorge',
       'Imanol de la Marga': 'bio-imanol',
       'Adrián':             'bio-adrian',
-      'Alex':               'bio-alex',
+      'Alex Juncal':        'bio-alex',
     };
 
     document.querySelectorAll('.note-head').forEach(function(el) {
