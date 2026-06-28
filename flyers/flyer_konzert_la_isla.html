@@ -33,15 +33,18 @@
     background:radial-gradient(ellipse at 50% 30%, rgba(200,137,58,0.14) 0%, transparent 60%);
     pointer-events:none;
   }
-  /* decorative corner flourishes */
+  /* decorative corner flourishes — flamenco guitar motif */
   .corner{
     position:absolute;
-    color:rgba(200,137,58,0.35);
-    font-size:34px;
-    letter-spacing:0.3em;
+    top:30px;
+    width:42px;
+    height:42px;
+    opacity:0.4;
+    z-index:3;
   }
-  .corner.tl{top:26px;left:34px;}
-  .corner.tr{top:26px;right:34px;}
+  .corner svg{width:100%;height:100%;fill:var(--gold);}
+  .corner.tl{left:40px;}
+  .corner.tr{right:40px;transform:scaleX(-1);}
 
   .inner{
     position:relative;
@@ -72,7 +75,7 @@
   }
 
   .style-line{
-    margin-top:24px;
+    margin-top:52px;
     font-family:'Playfair Display',serif;
     font-style:italic;
     font-size:30px;
@@ -114,7 +117,7 @@
   .when .day-num{
     font-family:'Playfair Display',serif;
     font-weight:900;
-    font-size:104px;
+    font-size:114px;
     line-height:0.85;
     color:var(--gold);
   }
@@ -166,12 +169,13 @@
   }
   .venue .vtext{text-align:left;}
   .venue .vlabel{
-    font-size:12px;
-    letter-spacing:0.26em;
-    text-transform:uppercase;
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:18px;
+    letter-spacing:0.01em;
     color:var(--burgundy);
     font-weight:700;
-    margin-bottom:4px;
+    margin-bottom:6px;
   }
   .venue .vname{
     font-family:'Playfair Display',serif;
@@ -207,13 +211,12 @@
 </head>
 <body>
 <div class="flyer">
-  <span class="corner tl">✦</span>
-  <span class="corner tr">✦</span>
   <div class="inner">
     <div class="kicker">Live in Basel</div>
     <img class="logo" src="img/losdelrin_logo_new.jpg" alt="Los del Rin" />
     <div class="style-line">Rumba Flamenca</div>
-    <div class="style-sub">Sonne · Saiten · Sommerabend</div>
+    <div class="style-sub">Spanische Musik · Freude & Stimmung</div>
+	<div class="style-sub">Tanzbare Rhythmen · Aires del Sur</div>
 
     <div class="divider"></div>
 
@@ -224,14 +227,14 @@
       <div class="day-meta">
         <div class="weekday">Freitag</div>
         <div class="month">Juli 2026</div>
-        <div class="time">★ 18:00 Uhr</div>
+        <div class="time">★ 19:00 Uhr</div>
       </div>
     </div>
 
     <div class="venue">
       <img class="isla" src="img/la_isla_food_truck.jpg" alt="La Isla Food Truck" />
       <div class="vtext">
-        <div class="vlabel">Wo</div>
+        <div class="vlabel">Du findest uns am Rhein, wo sonst</div>
         <div class="vname">La Isla Food Truck</div>
         <div class="vplace">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
