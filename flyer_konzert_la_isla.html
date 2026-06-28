@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#F5E6D8;
+    --burgundy:#8B1A2F;
+    --dark-red:#6A1422;
+    --navy:#1C2B4A;
+    --gold:#C8893A;
+    --charcoal:#2C2C2C;
+    --light-bg:#FBF3EC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  /* A4 portrait at 96dpi = 794 x 1123 */
+  .flyer{
+    width:794px;
+    height:1123px;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(165deg, var(--navy) 0%, #0d1825 55%, var(--dark-red) 100%);
+    font-family:'Lato',sans-serif;
+    color:var(--cream);
+  }
+  /* subtle warm glow */
+  .flyer::before{
+    content:'';
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 30%, rgba(200,137,58,0.14) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  /* decorative corner flourishes */
+  .corner{
+    position:absolute;
+    color:rgba(200,137,58,0.35);
+    font-size:34px;
+    letter-spacing:0.3em;
+  }
+  .corner.tl{top:26px;left:34px;}
+  .corner.tr{top:26px;right:34px;}
+
+  .inner{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:54px 56px 0;
+  }
+
+  .kicker{
+    font-size:15px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:26px;
+  }
+
+  .logo{
+    width:330px;
+    height:330px;
+    border-radius:50%;
+    box-shadow:0 0 60px rgba(255,255,255,0.16), 0 0 120px rgba(200,137,58,0.18);
+    object-fit:cover;
+  }
+
+  .style-line{
+    margin-top:24px;
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:30px;
+    color:var(--cream);
+  }
+  .style-sub{
+    font-size:14px;
+    letter-spacing:0.34em;
+    text-transform:uppercase;
+    color:rgba(245,230,216,0.7);
+    margin-top:10px;
+  }
+
+  .divider{
+    width:90px;height:3px;
+    background:var(--gold);
+    border-radius:3px;
+    margin:30px 0 26px;
+  }
+
+  .live{
+    font-family:'Playfair Display',serif;
+    font-weight:900;
+    font-size:62px;
+    line-height:1;
+    color:var(--cream);
+    letter-spacing:0.02em;
+  }
+  .live .accent{color:var(--gold);}
+
+  /* date + time block */
+  .when{
+    margin-top:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:26px;
+  }
+  .when .day-num{
+    font-family:'Playfair Display',serif;
+    font-weight:900;
+    font-size:104px;
+    line-height:0.85;
+    color:var(--gold);
+  }
+  .when .day-meta{
+    text-align:left;
+  }
+  .when .weekday{
+    font-family:'Playfair Display',serif;
+    font-size:34px;
+    font-weight:700;
+    color:var(--cream);
+    line-height:1.05;
+  }
+  .when .month{
+    font-size:18px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:rgba(245,230,216,0.78);
+    margin-top:4px;
+  }
+  .when .time{
+    margin-top:6px;
+    font-size:22px;
+    font-weight:700;
+    color:var(--gold);
+    letter-spacing:0.05em;
+  }
+
+  /* venue card with La Isla logo */
+  .venue{
+    margin-top:auto;
+    width:100%;
+    background:var(--cream);
+    color:var(--navy);
+    border-radius:6px 6px 0 0;
+    padding:30px 40px 34px;
+    display:flex;
+    align-items:center;
+    gap:26px;
+    box-shadow:0 -10px 40px rgba(0,0,0,0.3);
+  }
+  .venue .isla{
+    width:118px;height:118px;
+    border-radius:50%;
+    object-fit:cover;
+    flex-shrink:0;
+    background:#fff;
+    border:3px solid var(--burgundy);
+  }
+  .venue .vtext{text-align:left;}
+  .venue .vlabel{
+    font-size:12px;
+    letter-spacing:0.26em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .venue .vname{
+    font-family:'Playfair Display',serif;
+    font-size:34px;
+    font-weight:900;
+    color:var(--navy);
+    line-height:1.05;
+  }
+  .venue .vplace{
+    font-size:17px;
+    color:#4a4a4a;
+    margin-top:6px;
+    display:flex;align-items:center;gap:7px;
+  }
+  .venue .vplace svg{width:17px;height:17px;fill:var(--burgundy);}
+
+  /* footer strip */
+  .foot{
+    width:100%;
+    background:var(--navy);
+    color:var(--cream);
+    padding:16px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:16px;
+    letter-spacing:0.08em;
+  }
+  .foot svg{width:18px;height:18px;fill:var(--gold);}
+  .foot b{color:var(--gold);font-weight:700;letter-spacing:0.04em;}
+</style>
+</head>
+<body>
+<div class="flyer">
+  <span class="corner tl">✦</span>
+  <span class="corner tr">✦</span>
+  <div class="inner">
+    <div class="kicker">Live in Basel</div>
+    <img class="logo" src="img/losdelrin_logo_new.jpg" alt="Los del Rin" />
+    <div class="style-line">Rumba Flamenca</div>
+    <div class="style-sub">Sonne · Saiten · Sommerabend</div>
+
+    <div class="divider"></div>
+
+    <div class="live">Konzert <span class="accent">Live</span></div>
+
+    <div class="when">
+      <div class="day-num">10</div>
+      <div class="day-meta">
+        <div class="weekday">Freitag</div>
+        <div class="month">Juli 2026</div>
+        <div class="time">★ 18:00 Uhr</div>
+      </div>
+    </div>
+
+    <div class="venue">
+      <img class="isla" src="img/la_isla_food_truck.jpg" alt="La Isla Food Truck" />
+      <div class="vtext">
+        <div class="vlabel">Wo</div>
+        <div class="vname">La Isla Food Truck</div>
+        <div class="vplace">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Basel, Schweiz
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <span>Folgt uns: <b>@losdelrin.bs</b></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
